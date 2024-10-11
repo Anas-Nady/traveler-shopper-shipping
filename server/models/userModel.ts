@@ -24,8 +24,8 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
       select: false,
-      min: [8, "Password is too long"],
-      max: [50, "Password is too short."],
+      min: [8, "Password is too short"],
+      max: [50, "Password is too long."],
     },
     photo: {
       type: String,
