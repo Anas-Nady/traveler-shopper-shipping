@@ -80,6 +80,13 @@ shipmentSchema.pre("save", function (next) {
 });
 
 shipmentSchema.pre("save", function (next) {
+  if (this.products.length > 5) {
+    return next(new AppError("Too many products. Max is 5", 400));
+  }
+  next();
+});
+
+shipmentSchema.pre("save", function (next) {
   const totalPrices = this.products.reduce((acc, item) => acc + item.price, 0);
 
   if (totalPrices > 1000) {
